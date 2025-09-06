@@ -1,0 +1,22 @@
+# sbt build artifacts
+target/
+project/target/
+lib_managed/
+src_managed/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Metals / Bloop
+.bloop/
+.metals/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
