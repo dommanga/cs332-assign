@@ -22,7 +22,20 @@ object Main {
   /**
    * Exercise 2
    */
-  def balance(chars: List[Char]): Boolean = ???
+  def balance(chars: List[Char]): Boolean = {
+    def loop(chars: List[Char], count: Int): Boolean = {
+      if (count < 0) false
+      else if (chars.isEmpty) count == 0
+      else {
+        val nextCount =
+          if (chars.head == '(') count + 1
+          else if (chars.head == ')') count - 1
+          else count
+        loop(chars.tail, nextCount)
+      }
+    }
+    loop(chars, 0)
+  }
 
   /**
    * Exercise 3
