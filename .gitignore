@@ -19,5 +19,5 @@ Thumbs.db
 *.class
 *.log
 
-# Ignore jar files in lib
-lib/*.jar
+# Ignore jar files
+*.jar
