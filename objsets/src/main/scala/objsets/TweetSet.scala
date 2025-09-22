@@ -68,7 +68,7 @@ abstract class TweetSet {
    * Question: Should we implement this method here, or should it remain abstract
    * and be implemented in the subclasses?
    */
-  def mostRetweeted: Tweet = ???
+  def mostRetweeted: Tweet
 
   /**
    * Returns a list containing all tweets of this set, sorted by retweet count
@@ -116,6 +116,8 @@ class Empty extends TweetSet {
 
   def union(that: TweetSet): TweetSet = that
 
+  def mostRetweeted: Tweet = throw java.util.NoSuchElementException
+
   /**
    * The following methods are already implemented
    */
@@ -140,6 +142,15 @@ class NonEmpty(elem: Tweet, left: TweetSet, right: TweetSet) extends TweetSet {
 
   def union(that: TweetSet): TweetSet = {
     left.union(right.union(that)).incl(elem)
+  }
+
+  def mostRetweeted: Tweet = {
+    val leftMost = if (left.isInstanceOf[Empty]) elem else left.mostRetweeted
+    val rightMost = if (right.isInstanceOf[Empty]) elem else right.mostRetweeted
+
+    if (leftMost.retweets > rightMost.retweets && leftMost.retweets > elem.retweets) leftMost
+    else if (rightMost.retweets > leftMost.retweets && rightMost.retweets > elem.retweets) rightMost
+    else elem
   }
 
   /**
