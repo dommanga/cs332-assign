@@ -18,3 +18,6 @@ Thumbs.db
 # === Scala specific ===
 *.class
 *.log
+
+# Ignore jar files in lib
+lib/*.jar
